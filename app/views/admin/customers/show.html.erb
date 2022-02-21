@@ -1,0 +1,31 @@
+<div class="container" style="width:800px;">
+  <h4 class="row bg-secondary text-white" style="width:100px;" >
+    <%= @customer.last_name %>さんの会員詳細
+  </h4>
+  <div class="row">
+      <table class ="table">
+        <thead>
+          <% @customer.each do |customer| %>
+          <tr><th>会員ID</th>
+          <tr><td><%= customer.id %></td></tr>
+          <tr><th>氏名</th></tr>
+          <tr><td><%= customer.last_name %></td></tr>
+          <tr><th>フリガナ</th></tr>
+          <tr><td><%= customer.last_name_kana %></td></tr>
+          <tr><th>郵便番号</th></tr>
+          <tr><td><%= customer.postal_code %></td></tr>
+          <tr><th>住所</th></tr>
+          <tr><td><%= customer.address %></td></tr>
+          <tr><th>電話番号</th></tr>
+          <tr><td><%= customer.telephone_number %></td></tr>
+          <tr><th>メールアドレス</th></tr>
+          <tr><td><%= customer.email %></td></tr>
+          <tr><th>会員ステータス</th></tr>
+          <tr><td><%= customer.is_deleted %></td></tr>
+        <% end %>
+        </thead>
+      </table>
+      <%= link_to "編集する" edit_admin_customer(customer), class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
