@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
     admin_genres_path
-    when public
+    when Public
     customer_path
     end
   end
