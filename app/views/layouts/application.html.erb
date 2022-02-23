@@ -31,19 +31,7 @@
             <li>
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-light" %>
             </li>
-            <% else %>
-            <li>
-              <%= link_to "About", about_path, class:"btn btn-light mr-2" %>
-            </li>              
-            <li>
-              <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-light mr-2" %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_admin_session_path, class:"btn btn-light" %>
-            </li>
-          <% end %>
-            
-          <% if customer_signed_in? %>
+          <% elsif customer_signed_in? %>
             <li>
               <%= link_to "マイページ", customer_path(current_customer), class:"btn btn-light  mr-2" %>
             </li>
