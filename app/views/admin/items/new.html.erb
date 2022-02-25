@@ -1,5 +1,5 @@
 <div class="container" style="width:800px;">
-<h4 class="row bg-secondary text-black" style="width:110px;">>新商品追加</h4>
+<h4 class="row bg-secondary text-black" style="width:120px;">新商品追加</h4>
 <%= form_with model: @item, url: admin_items_path do |f| %>
     <h4>商品画像</h4>
       <%= f.file_field :image, accept: "image/*" %>
