@@ -23,6 +23,10 @@
       <td><%= @customer.telephone_number %></td>
     </tr>
     <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
       <th>メールアドレス</th>
       <td><%= @customer.email %></td>
     </tr>
@@ -30,10 +34,10 @@
   
   <h4>
     配送先　　
-    <%= link_to "一覧を見る", addresses_path(@customer), class:"btn btn-primary mr-2" %>
+    <%= link_to "一覧を見る", addresses_path, class:"btn btn-primary mr-2" %>
   </h4>
   <h4>
     注文履歴　
-    <%= link_to "一覧を見る", orders_path(@customer), class:"btn btn-primary mr-2" %>
+    <%= link_to "一覧を見る", orders_path, class:"btn btn-primary mr-2" %>
   </h4>
 </div>

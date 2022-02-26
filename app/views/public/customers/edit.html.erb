@@ -13,7 +13,6 @@
      <%= f.text_field :telephone_number %>
     <h4>メールアドレス</h4>
      <%= f.text_field :email %></br>
-     
-    <%= f.submit '編集内容を保存', class:"btn btn-success mr-2" %> <%= link_to "退会する", customers_unsubscribe_path(@customer), class:"btn btn-danger mr-2" %>
+    <%= f.submit '編集内容を保存', class:"btn btn-success mr-2" %> <%= link_to "退会する", customers_unsubscribe_path, class:"btn btn-danger mr-2" %>
   <% end %>
   </div>
