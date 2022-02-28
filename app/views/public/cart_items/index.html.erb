@@ -2,7 +2,7 @@
   <h4 class="row bg-secondary text-black" style="width:260px">
     　ショッピングカート
   </h4>
-  <table>
+  <table border="1">
     <thead>
       <tr>
         <th>
@@ -22,25 +22,27 @@
       <tbody>
         <% @cart_items.each do |cart_item| %>
         <tr>
-          <td>
+          <td style="width:200px">
             <%= cart_item.item.name %>
           </td>
-          <td>
-            <%= cart_item.item.price %>
+          <td style="width:150px">
+            <%= cart_item.item.with_tax_price %>円
+          </td>
+          <td style="width:150px">
+            <%= cart_item.amount %>個
+          </td>
+          <td style="width:150px">
+            <%= cart_item.subtotal %>円
           </td>
           <td>
-            <%= cart_item.amount %>
+            <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
           </td>
-          <td><%= cart_item.item.with_tax_price%></td>
-          <td><%= cart_item.subtotal%></td>
-          <% @sum += cart_item.subtotal %>
-          <td>
-            <%= link_to "削除する", cart_item_path(cart_item.item), method: :delete, class:"btn btn-danger mr-2" %>
-          </td>
-          
         </tr>
+        合計<%= @sum += cart_item.subtotal %>
         <% end %>
       </tbody>
     </thead>
   </table>
+  <%= link_to "カートを空にする", cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class:"btn btn-danger m-4" %>
+  <%= link_to "買い物を続ける", root_path, class:"btn btn-primary m-4" %>
 </div>
