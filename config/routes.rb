@@ -15,7 +15,7 @@ scope module: :public do
   resources :items, only: [:index, :show]
   resources :customers, only: [:show, :edit, :update]
   resources :cart_items, only: [:index, :update, :destroy, :create]
-  delete "cart_items/:destroy_all" => "cart_items#destroy_all"
+  delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_items"
   resources :orders, only: [:new, :create, :index, :show]
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   
