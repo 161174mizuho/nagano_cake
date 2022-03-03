@@ -8,11 +8,11 @@ class Public::CartItemsController < ApplicationController
     cart_item = CartItem.new(cart_item_params)
     cart_item.customer_id = current_customer.id
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-      # ここの上の行はどういう意味？
+      # パラムスでID〇のカート内から、ID〇のアイテムを見つける
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-       # ここの上の行はどういう意味？
+      # カートアイテムに見つけたカートIDと、アイテムのIDをおくる
       cart_item.amount += params[:cart_item][:amount].to_i
-      # ここのパラムスの意味は？
+      # カートアイテムに追加された個数を足す
       cart_item.save
       redirect_to cart_items_path
     else
@@ -34,8 +34,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = Item.find(params[:id])
-    cart_item.update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end
 

@@ -118,10 +118,10 @@ ActiveRecord::Schema.define(version: 2022_02_22_151657) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customers_id"
-    t.string "shipping_postal_code"
-    t.string "shipping_address"
-    t.string "shipping_name"
-    t.integer "shipping_cost"
+    t.string "shopping_postal_code"
+    t.string "shopping_address"
+    t.string "shopping_name"
+    t.integer "shopping_cost"
     t.integer "total_payment"
     t.integer "payment_method"
     t.integer "order_status"

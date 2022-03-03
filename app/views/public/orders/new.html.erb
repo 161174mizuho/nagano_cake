@@ -3,12 +3,30 @@
     注文情報入力
   </h4>
   <h5>支払い方法</h5>
-  <%= form_with model:@order, url: new_order_path do |f| %>
-  <%= f.radio_button :payment_method, "credit_card" %>
-  <%= f.label :payment_method, "クレジットカード" %>
-  <%= f.radio_button :payment_method, "transfer" %>
-  <%= f.label :payment_method, "銀行振込" %>
-  <h5>お届け先</h5>
-  
+  <%= form_with model: @order, url: order_confirm_path(@order.id) do |f| %>
+    <%= f.radio_button :payment_method, "credit_card" %>
+    <%= f.label :payment_method, "クレジットカード" %>
+    <%= f.radio_button :payment_method, "transfer" %>
+    <%= f.label :payment_method, "銀行振込" %>
+    <h5>お届け先</h5>
+    <%= f.radio_button :addresses_ladio, 0 %>
+    <%= f.label :addresses_ladio,"ご自身の住所" %></br>
+    <%= current_customer.postal_code %><%= current_customer.address %></br>
+    <%= current_customer.first_name %><%= current_customer.last_name %></br>
+    
+    <%= f.radio_button :addresses_ladio, 1 %>
+    <%= f.label :addresses_ladio,"登録済み住所から選択" %></br>
+    <%= f.select :addresses_id, options_from_collection_for_select(Address.all, :id, :address_display) %></br>
+    
+    <%= f.radio_button :addresses_ladio, 2 %>
+    <%= f.label :addresses_ladio,"新しいお届け先" %></br>
+    <%= f.label:shopping_postal_code, "郵便番号（ハイフンなし）"%>
+    <%= f.text_field :shipping_postal_code %></br>
+    <%= f.label :shpping_address, "住所　　　　　　　　　　" %>
+    <%= f.text_field :shpping_address %></br>
+    <%= f.label :shopping_name, "宛名　　　　　　　　　　" %>
+    <%= f.text_field :shipping_name  %>
+    
+    <%= f.submit "確認画面へ進む", class:"btn btn-primary mr-4" %>    
   <% end %>
 </div>
