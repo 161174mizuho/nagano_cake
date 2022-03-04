@@ -1,60 +1,51 @@
 <div class="container" style="width:800px" >
-<h4 class="row bg-secondary text-black" style="width:120px;">　注文情報確認　</h4>
-<table>
-  <% @order.each do |order| %>
-  <thead>
-    <tr>
-      <th>
-      商品名
-      </th>
-      <th>
-        単価（税込）
-      </th>
-      <th>
-        数量
-      </th>
-      <th>
-        小計
-      </th>
-    </tr>
-  <tbody>
-    <tr>
-      <%= order.cart_items.item.name %>
-    </tr>
-    <tr>
-      <%= order.cart_items.item.with_tax_price %>円
-    </tr>
-    <tr>
-      <%= order.cart_items.item.amount %>
-    </tr>
-    <tr>
-      <%= order.cart_items.item.subtotal %>
-    </tr>
-  </tbody>
-  </thead>
-</table>
-<table>
-  <thead>
-    <th>
-      送料
-    </th>
-    <th>
-      商品合計
-    </th>
-    <th>
-      請求合計
-    </th>
-  </thead>
-  <tbody>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-  </tbody>
-</table>
-<h4>支払方法</h4>
-<h4>お届け先</h4>
-<% end %>
+  <h4 class="row bg-secondary text-black" style="width:120px;">　注文情報確認　</h4>
+  <div class="col-8">
+    <table border="4">
+      <thead>
+        <tr>
+          <th style="width:150px">商品名</th>
+          <th style="width:80px">単価（税込）</th>
+          <th style="width:80px">数量</th>
+          <th style="width:80px">小計</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @order.each do |order| %>
+        <tr>
+          <%= order.cart_items.item.name %>
+        </tr>
+        <tr>
+          <%= order.cart_items.item.with_tax_price %>円
+        </tr>
+        <tr>
+          <%= order.cart_items.item.amount %>
+        </tr>
+        <tr>
+          <%= order.cart_items.item.subtotal %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <table>
+      <tr>
+        <th>送料</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>商品合計</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>請求合計</th>
+        <td></td>
+      </tr>
+    </table>
+    <h4 class="row">支払方法</h4>
+    <%= order.payment_method %>
+    <h4 class="row">お届け先</h4>
+    <%= order.
+    <% end %>
+  </div>
 </div>

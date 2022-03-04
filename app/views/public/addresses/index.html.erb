@@ -14,10 +14,11 @@
   <div class="row">
     <h5>宛名　　　　　　　　　　</h5>
     <%= f.text_field :name %>
-    <%= f.submit "新規登録", class:"btn btn-success mr-2" %>
+    <%= f.submit "新規登録", class:"btn btn-success ml-2" %>
   </div>
   <% end %>
-<table>
+  <div class="row mt-2">
+<table border="1">
   <thead>
     <tr>
       <th>郵便番号</th>
@@ -39,13 +40,12 @@
       <%= addresses.name %>
       </td>
       <td>
-        <%= link_to "編集する", edit_address_path(addresses.id), class:"btn btn-success mr-2" %>
-      </td>
-      <td>
-        <%= link_to "削除する", address_path(addresses.id), method: :delete, class:"btn btn-danger mr-2" %>
+        <%= link_to "編集する", edit_address_path(addresses.id), class:"btn btn-success m-2" %>
+        <%= link_to "削除する", address_path(addresses.id), method: :delete, class:"btn btn-danger m-2" %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+  </div>
 </div>

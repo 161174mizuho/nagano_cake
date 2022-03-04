@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.all
+    @items = Item.limit(3).order("created_at DESC")
   end
   
   def adout

@@ -1,14 +1,14 @@
 <div class="container"　style="width:800px">
   <h4 class="row bg-secondary text-black" style="width:120px">マイページ</h4>
-  <h4　class="row">
-    登録情報
-    <%= link_to "編集する", edit_customer_path(@customer.id), class:"btn btn-success mr-2" %>
-  </h4>
-  
-  <table border="1">
+  <div class="row m-2">
+    <h4 style="margin:5px">登録情報</h4>
+    <%= link_to "編集する", edit_customer_path(@customer.id), class:"btn btn-success mr-2 " %>
+  </div>
+  <div class="row" style="margin:10px">
+  <table border="2">
     <tr>
-      <th>氏名</th>
-      <td><%= @customer.first_name %> <%=@customer.last_name%></td>
+      <th style="width:150px">氏名</th>
+      <td style="width:200px"><%= @customer.first_name %> <%=@customer.last_name%></td>
     </tr>
     <tr>
       <th>カナ</th>
@@ -31,13 +31,17 @@
       <td><%= @customer.email %></td>
     </tr>
   </table>
-  
+  </div>
+  <div class="row m-2">
   <h4>
     配送先　　
     <%= link_to "一覧を見る", addresses_path, class:"btn btn-primary mr-2" %>
   </h4>
+  </div>
+  <div class="row m-2">
   <h4>
     注文履歴　
     <%= link_to "一覧を見る", orders_path, class:"btn btn-primary mr-2" %>
   </h4>
+  </div>
 </div>

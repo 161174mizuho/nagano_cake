@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image_id
   belongs_to :genre
   has_many :cart_items
+  has_many :order_details
   
   validates :image_id, presence: true
   validates :price, presence: true
