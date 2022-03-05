@@ -16,7 +16,9 @@ scope module: :public do
   resources :cart_items, only: [:index, :update, :destroy, :create]
   delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_items"
   resources :orders, only: [:new, :create, :index, :show] do
-  post "confirm" => "orders#confirm"
+    collection do 
+      post "confirm" => "orders#confirm"
+    end
   end
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   

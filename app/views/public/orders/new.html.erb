@@ -3,7 +3,7 @@
     注文情報入力
   </h4>
   <h5>支払い方法</h5>
-  <%= form_with model: @order, url: order_confirm_path(@order.id) do |f| %>
+  <%= form_with model: @order, url: confirm_orders_path do |f| %>
     <%= f.radio_button :payment_method, "credit_card" %>
     <%= f.label :payment_method, "クレジットカード" %>
     <%= f.radio_button :payment_method, "transfer" %>
@@ -21,11 +21,11 @@
     <%= f.radio_button :addresses_ladio, 2 %>
     <%= f.label :addresses_ladio,"新しいお届け先" %></br>
     <%= f.label:shopping_postal_code, "郵便番号（ハイフンなし）"%>
-    <%= f.text_field :shipping_postal_code %></br>
-    <%= f.label :shpping_address, "住所　　　　　　　　　　" %>
-    <%= f.text_field :shpping_address %></br>
+    <%= f.text_field :shopping_postal_code %></br>
+    <%= f.label :shopping_address, "住所　　　　　　　　　　" %>
+    <%= f.text_field :shopping_address %></br>
     <%= f.label :shopping_name, "宛名　　　　　　　　　　" %>
-    <%= f.text_field :shipping_name  %>
+    <%= f.text_field :shopping_name  %>
     
     <%= f.submit "確認画面へ進む", class:"btn btn-primary mr-4" %>    
   <% end %>
