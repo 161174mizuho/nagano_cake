@@ -9,17 +9,17 @@
     <%= f.radio_button :payment_method, "transfer" %>
     <%= f.label :payment_method, "銀行振込" %>
     <h5>お届け先</h5>
-    <%= f.radio_button :addresses_ladio, 0 %>
-    <%= f.label :addresses_ladio,"ご自身の住所" %></br>
+    <%= f.radio_button :address_ladio, 0 %>
+    <%= f.label :address_ladio,"ご自身の住所" %></br>
     <%= current_customer.postal_code %><%= current_customer.address %></br>
     <%= current_customer.first_name %><%= current_customer.last_name %></br>
     
-    <%= f.radio_button :addresses_ladio, 1 %>
-    <%= f.label :addresses_ladio,"登録済み住所から選択" %></br>
-    <%= f.select :addresses_id, options_from_collection_for_select(Address.all, :id, :address_display) %></br>
+    <%= f.radio_button :address_ladio, 1 %>
+    <%= f.label :address_ladio,"登録済み住所から選択" %></br>
+    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></br>
     
-    <%= f.radio_button :addresses_ladio, 2 %>
-    <%= f.label :addresses_ladio,"新しいお届け先" %></br>
+    <%= f.radio_button :address_ladio, 2 %>
+    <%= f.label :address_ladio,"新しいお届け先" %></br>
     <%= f.label:shopping_postal_code, "郵便番号（ハイフンなし）"%>
     <%= f.text_field :shopping_postal_code %></br>
     <%= f.label :shopping_address, "住所　　　　　　　　　　" %>

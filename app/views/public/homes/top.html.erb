@@ -11,7 +11,9 @@
     <div class="row">
       <% @items.each do |item| %>
         <div>
-          <%= image_tag item.get_image(200,200) %>
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(200,200), class:"m-0.5" %>
+        <% end %>
           <p>
             <%= item.name %></br>
             ¥<%= item.price %>
