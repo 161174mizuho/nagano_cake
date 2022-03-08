@@ -24,12 +24,20 @@ class Public::OrdersController < ApplicationController
 
   def create
     @address_ladio = params[:order][:address_ladio]
-    @order = order.new(order_params)
-    order.save
+    @order = Order.new(order_params)
+    @order.save
     if @address_ladio == "2"
-      Address.create(name: @order.shopping_name,postal_code: @order.shopping_postal_code, address: @order.shopping_address)
-      Address.save
+      @address = Address.new
+      @address.name = @order.shopping_name
+      @address.postal_code = @order.shopping_postal_code
+      @address.address = @order.shopping_address
+      @address.customer_id = current_customer.id
+      @address.save
     end
+    @order_detail = OrderDetail.new
+    @order_detail.item_id = current_customer.cart_items.item.id
+    @order_detail.save
+    current_customer.cart_items.clear
     redirect_to orders_thanks_path
   end
   
@@ -45,7 +53,7 @@ class Public::OrdersController < ApplicationController
   
   private
   def order_params
-    params.require(:order).permit(:shopping_postal_code, :shopping_address, :shopping_name, :shopping_cost, :payment_method)
+    params.require(:order).permit(:shopping_cost, :shopping_postal_code, :shopping_address, :shopping_name, :shopping_cost, :payment_method, :total_payment, :order_statusder_statas, :customer_id )
   end
   
   def address_params

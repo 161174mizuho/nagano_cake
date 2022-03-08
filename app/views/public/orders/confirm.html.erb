@@ -69,15 +69,14 @@
     </div>
   </div>
 <%= form_with model: @order, url: orders_path do |f| %>
-  <%= f.hidden_field :payment_method %>
-  <%= f.hidden_field :shopping_postal_code %>
-  <%= f.hidden_field :shopping_address %>
-  <%= f.hidden_field :shopping_name %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :with_tax_price %>
-  <%= f.hidden_field :amount %>
-  <%= f.hidden_field :@sum %>
-  <%= f.hidden_field :@shopping_cost %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :shopping_postal_code, value: @order.shopping_postal_code %>
+  <%= f.hidden_field :shopping_address, value: @order.shopping_address %>
+  <%= f.hidden_field :shopping_name, value: @order.shopping_name %>
+  <%= f.hidden_field :total_payment, value: @sum %>
+  <%= f.hidden_field :shopping_cost, value: @s %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
+  <%= f.hidden_field :address_ladio, value: params[:order][:address_ladio] %>
   <%= f.submit "注文を確定する", class:"btn btn-success" %>
 <% end%></div>
 
