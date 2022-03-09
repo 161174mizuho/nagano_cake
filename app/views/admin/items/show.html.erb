@@ -20,11 +20,7 @@
   <% end %>
   
   <h6>商品画像</h6>
-  <% if @item.image_id.attached? %>
     <%= image_tag @item.image_id %>
-  <% else %>
-    <%= image_tag "no_image" %>
-  <% end %>
   </br>
   <%= link_to "編集する", edit_admin_item_path, class:"btn btn-success mr-2" %>
 </div>

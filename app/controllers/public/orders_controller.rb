@@ -34,10 +34,16 @@ class Public::OrdersController < ApplicationController
       @address.customer_id = current_customer.id
       @address.save
     end
-    @order_detail = OrderDetail.new
-    @order_detail.item_id = current_customer.cart_items.item.id
-    @order_detail.save
-    current_customer.cart_items.clear
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+      @order_item = OrderDetail.new
+      @order_item.order_id = @order.id
+      @order_item.price = cart_item.item.with_tax_price
+      @order_item.amount = cart_item.amount
+      @order_item.item_id = cart_item.item_id
+      @order_item.save
+    end
+    current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
   
@@ -46,9 +52,11 @@ class Public::OrdersController < ApplicationController
 
 
   def index
+    @orders = current_customer.orders.includes(:order_details, :items).page(params[:page]).reverse_order
   end
 
   def show
+    @order = Order.find(params[:id])
   end
   
   private
