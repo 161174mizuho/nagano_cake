@@ -24,17 +24,17 @@
           </tr>
           <tr>
             <th>注文ステータス</th>
-            <%= form_with model: @order, url: admin_order_path(@order),method: :patch do |f| %>
+            <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
             <td>
-              <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
+              <%= f.label :order_status, [["入金待ち","0"], ["入金確認","1"], ["製作中","2"], ["発送準備中","3"], ["発送済み","4"]] %>
+              <%= f.select :order_status, Order.order_statuses.key.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
             <td><%= f.submit "更新" ,class:"btn btn-success" %></td>
             <% end %>
           </tr>
       </table>
+    </div>
       <div class="row mt-4">
         <div class="col-8">
-        <% @order.order_details.each do |order_detail| %>
-        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
         <table>
           <thead>
             <tr>
@@ -42,31 +42,31 @@
               <th style="width:130px">単価（税込）</th>
               <th style="width:100px">数量</th>
               <th style="width:100px">小計</th>
-              <th style="width:180px">製作ステータス</th>
+              <th style-"width:200px">製作ステータス</th>
               <th></th>
             </tr>
             <tbody>
+              <% @order.order_details.each do |order_detail| %>
               <tr>
                 <td><%= order_detail.item.name %></td>
                 <td><%= order_detail.price %></td>
                 <td><%= order_detail.amount %></td>
                 <td><%= order_detail.subtotal %></td>
-                <td>
-                  <%= f.select :production_status, OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]} %>
-                </td>
-                <td><%= f.submit "更新" ,class:"btn btn-success" %></td>
+                <%= form_with model: order_detail, url: admin_order_detail_path do |f| %>
+                  <td><%= f.select :production_status, [["製作不可", "ng"], ["製作待ち","wait"], ["製作中","making"], ["製作完了","completion"]] %></td>
+                  <td><%= f.submit "更新" ,class:"btn btn-success" %></td>
+                <% end %>
               </tr>
+              <% end %>
             </tbody>
           </thead>
         </table>
-        <% end %>
-        <% end %>
       </div>
       <div class="col-4">
         <table>
           <tr>
             <th style="width:100px">商品合計</th>
-            <td><%= @order.total_payment - @order.shopping_cost %></td>
+            <!--<td><= @order.total_payment - @order.shopping_cost %></td>-->
           </tr>
           <tr>
             <th>送料</th>
