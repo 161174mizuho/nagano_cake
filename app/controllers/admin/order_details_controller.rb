@@ -5,7 +5,7 @@ class Admin::OrderDetailsController < ApplicationController
     order_details = order.order_details
     order_detail.update(order_detail_params)
     if order_details.where(production_status: "making").count >= 1
-      order.order_status = 2
+      order.order_status = "making"
       order.save
     end
     if order_details.count == order_details.where(production_status: "completion").count
